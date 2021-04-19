@@ -2,16 +2,14 @@ package com.example.Amazonclone.controller;
 
 import com.example.Amazonclone.customizedResponse;
 import com.example.Amazonclone.model.Product;
+import com.example.Amazonclone.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.Amazonclone.service.ProductService;
-
 import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -27,6 +25,7 @@ public class ProductController {
 
         return new ResponseEntity(cust, HttpStatus.OK);
     }
+
     @PostMapping(value = "/products" , consumes = {
             MediaType.APPLICATION_JSON_VALUE
     })

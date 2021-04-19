@@ -3,8 +3,6 @@ package com.example.Amazonclone.service;
 import com.example.Amazonclone.model.Product;
 import com.example.Amazonclone.model.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -71,7 +69,6 @@ public class ProductService {
         else{
             return null;
         }
-
     }
 
     public void deleteAProduct(String id)
