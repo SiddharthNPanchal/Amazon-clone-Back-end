@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collections;
 import java.util.Optional;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class ProductController {
 
@@ -30,30 +31,18 @@ public class ProductController {
             MediaType.APPLICATION_JSON_VALUE
     })
     public ResponseEntity addProduct(@RequestBody Product product){
-
         service.insertProducts(product);
         return  new ResponseEntity(product, HttpStatus.OK);
     }
 
-    @GetMapping("/categories")
-    public ResponseEntity getCategories(){
-//        System.out.println("Hello");
-        var cust = new customizedResponse("A list of all categories", service.getCategories());
-//        service.getCategories();
-        return new ResponseEntity(cust, HttpStatus.OK);
-    }
-
     @GetMapping("/product-category/{category}")
     public ResponseEntity getProductsfromCat(@PathVariable String category){
-//        System.out.println("Hello");
         var cust = new customizedResponse("A list of all Products by category", service.getProductsfromCat(category));
-//      service.getCategories();
         return new ResponseEntity(cust, HttpStatus.OK);
     }
 
     @GetMapping("/products/bestsellers")
     public ResponseEntity getBestSellers(){
-//        System.out.println("Hello");
         var cust = new customizedResponse("A list of all Bestsellers", service.getBestSellers());
 
         return new ResponseEntity(cust, HttpStatus.OK);
@@ -61,8 +50,7 @@ public class ProductController {
 
     @GetMapping("/products/{id}")
     public ResponseEntity getProduct(@PathVariable String id){
-//        System.out.println("Hello");
-        //List<Product> temp = Collections.singletonList(service.getProduct(id));
+
         var cust = new customizedResponse("A list of all Products by category", Collections.singletonList(service.getProduct(id)));
 //      service.getCategories();
         System.out.println(cust.getBody());

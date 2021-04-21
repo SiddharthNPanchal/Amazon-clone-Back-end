@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-
 @Service
 public class ProductService {
 
@@ -20,36 +19,14 @@ public class ProductService {
         repo.insert(product);
     }
 
-    public List<String> getCategories(){
-//        System.out.println(repo.findAll());
-        Set<String> cat= new HashSet<>();
-        for(Product p: repo.findAll()){
-
-            cat.add(p.getCategory());
-        }
-        List<String> targetList = List.copyOf(cat);
-        return targetList;
-    }
-
     public List<Product> getProductsfromCat(String category){
-//        List<Product> products = repo.findAll();
-        List<Product> products = new ArrayList<>();
-        for(Product p: repo.findAll()){
-            if(p.getCategory().equals(category)){
-                products.add(p);
-            }
-        }
+        List<Product> products = repo.findBycategory(category);
         return products;
     }
 
     public List<Product> getBestSellers(){
-//        List<Product> products = repo.findAll();
-        List<Product> products = new ArrayList<>();
-        for(Product p: repo.findAll()){
-            if(p.isBestSeller()){
-                products.add(p);
-            }
-        }
+
+        List<Product> products = repo.findBybestSeller(true);
         return products;
     }
 
